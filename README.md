@@ -27,14 +27,10 @@ This repository contains the architecture documentation for the MyDigiTwin proje
 
 To build and view the documentation locally, follow these steps:
 
-1. Ensure you have Python and pip installed on your system.
+1. Ensure you have Python and `mkdocs` installed on your system.
 2. Clone this repository to your local machine.
 3. Open a command prompt or terminal and navigate to the project directory.
-4. Install the required dependencies by running the following command:
-   ```
-   pip install -r requirements.txt
-   ```
-5. Once the dependencies are installed, you can build the documentation using MkDocs:
+4. Build the documentation by running the following command:
    ```
    mkdocs build
    ```
@@ -44,4 +40,3 @@ To build and view the documentation locally, follow these steps:
    mkdocs serve
    ```
    This will start a local development server and provide a URL where you can access the documentation in your web browser.
-
