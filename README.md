@@ -23,7 +23,11 @@ This repository contains the architecture documentation for the MyDigiTwin proje
 15. [Images](docs/images)
 
 
-## Building the Documentation
+## Automated documentation building
+
+This repository includes a GitHub action script that builds the documentation as an HTML website and publishes it in GitHub pages. However, as this repository is currently private, the project's GitHub page won't be available.
+
+## Manual documentation building
 
 To build and view the documentation locally, follow these steps:
 
