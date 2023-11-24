@@ -16,7 +16,7 @@ This repository contains the architecture documentation for the MyDigiTwin proje
 8. [Cross-cutting Concepts (to be done)](docs/08.Crosscutting%20Concepts.md)
 9. [Architecture Decisions (to be done)](docs/09.Architecture%20Decisions.md)
 10. [Quality Requirements (to be done)](docs/10.Quality%20Requirements.md)
-11. [Risks and Technical Debt (to be done)](docs/11.Risks%20and%20Technical%20Debt.md)
+11. [Risks and Technical Debt (draft)](docs/11.Risks%20and%20Technical%20Debt.md)
 12. [Glossary (draft)](docs/12.Glossary.md)
 13. [About arc42](docs/Aboutarc42.md)
 14. [Appendix](docs/Appendix.md)
