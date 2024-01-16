@@ -1,0 +1,633 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../04.Solution%20Strategy/">
+      
+      
+        <link rel="next" href="../06.Runtime%20View/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
+    
+    
+      
+        <title>Building Block View - MyDigiTwin architecture documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#building-block-view" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MyDigiTwin architecture documentation" class="md-header__button md-logo" aria-label="MyDigiTwin architecture documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MyDigiTwin architecture documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Building Block View
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MyDigiTwin architecture documentation" class="md-nav__button md-logo" aria-label="MyDigiTwin architecture documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    MyDigiTwin architecture documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MyDigiTwin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01.Introduction%20and%20Goals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction and Goals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02.Architecture%20Constraints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture Constraints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03.Context%20and%20scope/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Scope and Context
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04.Solution%20Strategy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Solution Strategy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Building Block View
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06.Runtime%20View/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Runtime View
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07.Deployment%20View/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployment View
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08.Crosscutting%20Concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cross-cutting Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09.Architecture%20Decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design Decisions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10.Quality%20Requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quality Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11.Risks%20and%20Technical%20Debt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Risks and Technical Debts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12.Glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Health standards concept map
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Aboutarc42/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About arc42
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="building-block-view">Building Block View</h1>
+<h1 id="l1-system-context">L1. System context</h1>
+<p>MyDigiTwin is a scientific endeavor led by a consortium comprised of scientific and commercial partners within the health domain. Consequently, MyDigiTwin as a technological product has two fundamental 'embodiments' given each partner's main viewpoint: a patient-oriented user-friendly product to be integrated into <a href="../12.Glossary/">PGOs'</a> infrastructure, and a research environment where scientists can develop the AI-based back-bone of the said product, that is to say, CVD prediction models.</p>
+<p>These prediction models are expected to be created from multiple big-data reference datasets combined, which would be included in this research environment as they become available. Given all the above -as described in the diagram below- in addition to the researchers and the patients, the system will involve developers, domain experts, and data experts who will work on the integration of these reference datasets. In particular, they are expected to work on tasks such as data harmonization, infrastructure configuration, and model tuning (e.g.,. for multi-data statistical homogeneity).</p>
+<p><img alt="End-user building blocks" src="../images/vantage/L1-System-Context.drawio.png" /></p>
+<p>Also according to the diagram, it is important to highlight that there won't be any kind of application-level interoperability between the end-user environment (which would be eventually deployed on multiple PGOs) and the research one. Instead, the PGOs will get access to the prediction models trained in the research environment, once the researchers have validated them. This improves privacy (for PGOs data and reference datasets) by ensuring that there won't be an exchange of patient information outside of the PGO environment. Furthermore, avoiding direct interoperability between the MyDigiTwin module, and the research infrastructure, would also prevent scalability and computing-power costs issues with the reference datasets infrastructure (which are often limited as they are intended for research purposes only). This is due to the fact that this module would be eventually running on multiple PGOs, where each one, in turn, would be handling concurrent simulation or prediction requests from many patients.</p>
+<h2 id="l2-research-environment">L2. Research environment</h2>
+<h3 id="privacy-preserving-federated-learning-l2">Privacy-preserving Federated Learning (L2)</h3>
+<p>Ensuring that all MyDigiTwin partners, in particular researchers, can use health data without compromising individual privacy is one of the system's <a href="../01.Introduction%20and%20Goals/">quality goals</a>. With this motivation, the core element of the research environment is a privacy-preserving federated learning architecture. This architecture (also referred to as Personal Health Train, or PHT, in the health care domain) allows multiple parties to collaboratively train models, or perform data analysis, without sharing raw data. Instead, each party performs local computations and updates on their data, and the model updates are shared with one that aggregates them into a global model.</p>
+<p>As illustrated in the diagram below, each reference dataset would be part of the federated learning architecture as a node. Each node, based on a request sent by the central server (e.g., an algorithm), will locally train a machine learning model using its respective data, and return only model updates or aggregated information. The central server, in turn, will aggregate and update a global model. This exchange between the server and nodes is performed during multiple iterations, e.g., until a convergence criterion is met.</p>
+<p><img alt="FLA" src="../images/vantage/L1-ResearchEnv.drawio.png" /></p>
+<h4 id="data-harmonization">Data harmonization</h4>
+<p>One of the challenges of the federated learning architecture previously described is the heterogeneity of the involved reference datasets, i.e., variable names, data format, and the scales and units used. Harmonizing the data involves standardizing these differences to ensure compatibility and consistency, facilitating effective model training across all nodes.</p>
+<p>Given that the research environment of MyDigiTwin is expected to integrate more reference datasets over time, the harmonization strategy for its federating architecture is to make said datasets FHIR-compliant. This way, the federated algorithms could refer to variables within a reference dataset in a standardized fashion by using <a href="https://hl7.org/fhir/fhirpath.html">FHIRPath</a> -the language for querying and navigating FHIR resources-.</p>
+<p>As illustrated in the diagram above, it is then expected that each node will have a local copy of its corresponding dataset represented (transformed) as FHIR resources -a <a href="https://build.fhir.org/bundle.html">FHIR bundle</a> for each data point-. More specifically, these FHIR resources would be compliant with the <a href="https://zibs.nl/wiki/ZIB_Publicatie_2017(NL)">Zib-profile (2017)</a> published by <a href="https://informatiestandaarden.nictiz.nl/wiki/MedMij:Landingspagina_MedMij">MedMij</a>. </p>
+<p>To make this harmonization process as consistent as possible across multiple reference datasets, several tools are developed as part of MyDigiTwin. These are further described <a href="https://github.com/MyDigiTwinNL/LifelinesDataAccessDocumentation">for the particular context of Lifelines</a>.</p>
+<h2 id="l2-end-user-environment">L2. End-user environment</h2>
+<p>The end-user environment (or end-user interface) of MyDigiTwin is where patients will ultimately make use of the prediction and simulation features of the platform. This environment would be provided to patients in the Netherlands through their respective health provider's PGO platform. As described in the <a href="#l1-system-context">system context</a>, the backbone of these features would be the prediction models, created by the researchers, through the <a href="#l2-research-environment">research environment</a>. </p>
+<p><img alt="End User Env." src="../images/vantage/L1-EndUserEnv.drawio.png" /></p>
+<p>As it is expected for multiple PGOs to eventually integrate MyDigiTwin, it is envisioned a reusable, containerized 'MyDigiTwin module' (dark blue in the diagram) that provides the features needed for using the prediction models, the digitalized professional guidelines, and any other resource created by researchers in the project. Once this end-user environment is being set up on the PGO, or when new prediction models are available, the files with said models would be transferred through a secure channel between the research environment and the PGO.</p>
+<p>Once this module, the models, and the guidelines are in place within the PGO, the following high-level steps would be performed when a patient requests a simulation (this would be further specified on the <a href="../06.Runtime%20View/">Runtime View</a>):</p>
+<ol>
+<li>The Patient accesses the PGOs and/or the MyDigiTwin-specific user interface to perform the request.</li>
+<li>Once the patient is logged in, the PGO platform will pull the patient's health records it has access to.</li>
+<li>The PGO platform transforms these health records into an FHIR bundle, compliant with the same profile used for the <a href="#data-harmonization">data harmonization</a> of the training data (if it isn't in this format already).</li>
+<li>The PGO platform gets the variable values needed as the input to the prediction model, from the FHIR bundle, by using FHIRPath expressions (the same kind of expressions used by the algorithms to get values from the FHIR-compliant harmonized datasets).</li>
+<li>The PGO platform passes these variable values to the MyDigiTwin module, gets the results, and presents them to the users accordingly.</li>
+</ol>
+<h1 id="l3-research-environment-components">L3. Research environment components</h1>
+<p>For the implementation of the <a href="#l2-research-environment">research environment</a>, vantage6 provides a flexible infrastructure for its underlying federated learning architecture. Vantage6 is an open-source platform inspired by the Personal Health Train (PHT) concept, which stands for privacy-preserving federated learning infrastructure for secure insight exchange. It is built on three fundamental principles: Autonomy, Heterogeneity, and Flexibility. Autonomy ensures that all parties involved in the federated learning process remain independent and autonomous. Heterogeneity allows parties to have differences in hardware and operating systems. Flexibility refers to how the platform does not impose restrictions on the data that can be used for training models.</p>
+<p><img alt="" src="../images/vantage/L3-Vantage.drawio.png" /></p>
+<p>The server is the central component of the vantage6 architecture. It stores information about organizations, users, and other aspects of pre-arranged collaborations for a particular training or data analytics process. 
+and nodes to authenticate and interact through the API that it hosts. A node, on the other hand, is a piece of software running on the same premises as each dataset involved in a federated learning task. It is responsible for locally executing computation tasks (e.g., local training) and returning the results to the server. </p>
+<p>The diagram above illustrates how vantage6 would handle a request to execute an algorithm within a collaboration (an agreement between two or more parties to participate in a study). For the sake of simplicity, This algorithm only involves two nodes: 'Organization A', and 'Aggregator'. The former, is expected to process its local dataset, whereas the latter would simply aggregate partial results from other nodes:</p>
+<p><div class="highlight"><pre><span></span><code>central_algorithm()
+    results_a = run(intermediate_algorithm,Organization-A)
+    aggregate(results_a, central_model)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>intermediate_algorithm()
+    results = local_training(local_dataset)
+    post_result(results)
+</code></pre></div></p>
+<p>The above algorithms <em>Central_algorithm</em> and <em>Intermediate_algorithm</em> (presented in pseudo-code for simplicity), are expected to be executed as follows:</p>
+<ol>
+<li>A server client (e.g., a researcher) requests the execution of <em>central_algorithm</em> on the 'Aggregator node'.</li>
+<li>The server will notify the 'Aggregator node' about this new task.</li>
+<li>The 'Aggregator node' pulls the algorithm from a container registry.</li>
+<li>As described on the pseudo-code, once executed, <em>central_algorithm</em>, will request the server to run the 'intermediate_algorithm' on Organization-A's node.</li>
+<li>The server, in turn, will notify 'Organization A' about the request for running the the'intermediate_algorithm'.</li>
+<li>Organization-A also pulls the said algorithm from the container registry.</li>
+<li>The <em>intermediate_algorithm</em> algorithm processes the data it has access to.</li>
+<li>The <em>intermediate_algorithm</em> sends aggregated data, to the aggregator, through the server.</li>
+<li>The server posts the partial results to the Aggregator node.</li>
+<li>The aggregator node uses the partial results from Organization A, and from other nodes (not described in these steps), to create a unified, central model. </li>
+</ol>
+<p>The steps above do not mention many security considerations involved in the process (these are addressed in <a href="../11.Risks%20and%20Technical%20Debt/">the Risks section</a>). However, it is worth noticing that in the default vantage6 architecture, the nodes (where the datasets reside) only perform outbound communications to the server. That is to say, there is no need to open any kind of port where data resides.</p>
+<h2 id="federated-learning-node">Federated learning node</h2>
+<p><img alt="High level building blocks" src="../images/vantage/L3-Components-node.drawio.png" /></p>
+<h2 id="federated-learning-server">Federated learning server</h2>
+<p><img alt="High level building blocks" src="../images/vantage/L3-Components-server.drawio.png" /></p>
+<!--
+Inside the node
+
+![High level building blocks](./images/vantage/L3-Components-client.drawio.png)
+
+
+[WIP - Server details]
+
+![High level building blocks](./images/vantage/L3-Components-server.drawio.png)
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.7389ff0e.min.js"></script>
+      
+    
+  </body>
+</html>

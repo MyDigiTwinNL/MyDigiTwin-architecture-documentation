@@ -1,0 +1,795 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../10.Quality%20Requirements/">
+      
+      
+        <link rel="next" href="../12.Glossary/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.4">
+    
+    
+      
+        <title>Risks and Technical Debts - MyDigiTwin architecture documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#risks-and-technical-debts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MyDigiTwin architecture documentation" class="md-header__button md-logo" aria-label="MyDigiTwin architecture documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MyDigiTwin architecture documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Risks and Technical Debts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MyDigiTwin architecture documentation" class="md-nav__button md-logo" aria-label="MyDigiTwin architecture documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    MyDigiTwin architecture documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MyDigiTwin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01.Introduction%20and%20Goals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction and Goals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02.Architecture%20Constraints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture Constraints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03.Context%20and%20scope/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System Scope and Context
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04.Solution%20Strategy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Solution Strategy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05.Building%20Block%20View/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building Block View
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06.Runtime%20View/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Runtime View
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07.Deployment%20View/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deployment View
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08.Crosscutting%20Concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cross-cutting Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09.Architecture%20Decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design Decisions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10.Quality%20Requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quality Requirements
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Risks and Technical Debts
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12.Glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Health standards concept map
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Aboutarc42/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About arc42
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="risks-and-technical-debts">Risks and Technical Debts</h1>
+<h1 id="security-risks">Security risks</h1>
+<p>In this section, we identify technical security risks associated to the MyDigiTwin architecture, and measures to control them. These measures serve as a guideline of best practices to be considered for each one of the parties involved in the project.</p>
+<h2 id="ai-model-related-security-risks">AI model-related security risks</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Risk</th>
+<th>Symbol</th>
+<th>Description</th>
+<th>Measures</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td><strong>Confidentiality attacks</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td><a href="#references">[1]</a></td>
+</tr>
+<tr>
+<td>R1.1</td>
+<td>Privacy risks</td>
+<td></td>
+<td>Leakage, misuse and abuse of training data is a long-standing privacy risk in machine learning. This risk is exacerbated when the training data is provided by multiple parties, which, in conventional ML approaches, requires disclosing said data in a single place.</td>
+<td><a href="#federated-learning">FL</a>, <a href="#secure-multi-party-computation">SMC</a></td>
+<td>[1]</td>
+</tr>
+<tr>
+<td>R1.2</td>
+<td>Eavesdropping</td>
+<td><img alt="" src="../images/icons/eavesdropping.png" /></td>
+<td>The unauthorized interception of communication between two devices. In the context of AI, it is related to the exposure of sensitive data in distributed machine learning (federeated learning, SMC).</td>
+<td><a href="#secure-communication-protocols">Secure communication protocols</a>, MFA, <a href="#differential-privacy">DP</a></td>
+<td>[1][4]</td>
+</tr>
+<tr>
+<td>R2</td>
+<td><strong>Poisoning attacks</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td>[1]</td>
+</tr>
+<tr>
+<td>R2.1</td>
+<td>Data poisoning</td>
+<td><img alt="" src="../images/icons/poison-data.png" /></td>
+<td>A malicious participant in a federated learning process intentionally introduces biased or corrupted data to manipulate the model's performance. R7</td>
+<td><a href="#differential-privacy">DP</a>, <a href="#homo-morphic-encryption">HME</a></td>
+<td>[1][2][3][4]</td>
+</tr>
+<tr>
+<td>R2.2</td>
+<td>Model poisoning</td>
+<td><img alt="" src="../images/icons/model-poison.png" /></td>
+<td>Occurs when a malicious participant in the federated learning process intentionally introduces biased or corrupted data to manipulate the model's performance.R5</td>
+<td><a href="#secure-communication-protocols">Secure communication protocols</a>, cryptographic techniques</td>
+<td>[1][3][4]</td>
+</tr>
+<tr>
+<td>R3</td>
+<td><strong>Inference attacks</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>R3.1</td>
+<td>Reconstruction</td>
+<td><img alt="" src="../images/icons/inference-model.png" /></td>
+<td>Reconstructing or inferring sensitive or private information using only publicly available data, e.g., public aggregate statistics about the dataset.</td>
+<td>DP, Robust Aggregation Algorithms</td>
+<td>[1][3][4]</td>
+</tr>
+<tr>
+<td>R3.2</td>
+<td>Model inversion</td>
+<td><img alt="" src="../images/icons/inference-model.png" /></td>
+<td>An attacker tries to reconstruct the training data of a machine learning model from its predictions.</td>
+<td><a href="#differential-privacy">DP</a>, <a href="#homo-morphic-encryption">HME</a></td>
+<td>[3][4]</td>
+</tr>
+<tr>
+<td>R3.3</td>
+<td>Membership inference</td>
+<td><img alt="" src="../images/icons/membership-inference.png" /></td>
+<td>An attacker tries to determine whether a given data sample was part of the training data for a machine learning model. In the healthcare context these attacks could disclose, for example, the medical condition of a given patient.</td>
+<td><a href="#differential-privacy">DP</a>, <a href="#homo-morphic-encryption">HME</a>, Regularisation, Training data reduction</td>
+<td>[1][4]</td>
+</tr>
+<tr>
+<td>R3.4</td>
+<td>Backdoor attack</td>
+<td></td>
+<td>An attacker insert hidden triggers in the global model (e.g. by poisoning the data or the model). The compromised model would function as expected with standard input. However, a very specific one would trigger a biased or malocious intentional output.</td>
+<td><a href="#differential-privacy">DP</a></td>
+<td>[1][2][3][4]</td>
+</tr>
+<tr>
+<td>R3.5</td>
+<td>Generative Adverserial Networks (GAN)</td>
+<td></td>
+<td>A machine learning model that can be used to generate synthetic data that resembles the real one. GANs can be used to craft inputs aimed at tricking the model for the attacker to understand its behavior and vulnerabilities. This understanding could enable, for example, inferring membership in the training dataset. R3.3</td>
+<td><a href="#secure-multi-party-computation">SMC</a>,<a href="#differential-privacy">DP</a>,TEE,<a href="#homo-morphic-encryption">HME</a></td>
+<td>[1][2][3][4][6]</td>
+</tr>
+</tbody>
+</table>
+<h2 id="measures-description-application">Measures description &amp; application</h2>
+<h4 id="federated-learning-and-secure-multi-party-computation">Federated learning and Secure Multi-Party Computation</h4>
+<p>Federated Learning and Multi-Party Computation are two techniques used to enhance privacy and security in machine learning systems, particularly in scenarios where data is distributed across multiple parties. Federated Learning is a machine learning approach that allows a model to be trained with multiple datasets, in a way that each dataset never leave its host. Instead, only ecrypted aggregated results are exchanged. Secure Multi-Party Computation (SMC), on the other hand, allows multiple parties to compute a function over their inputs while keeping those inputs private. </p>
+<h4 id="differential-privacy">Differential Privacy:</h4>
+<p>Differential Privacy (DP) is a privacy-preserving technique that adds noise to the data or the model updates to prevent the identification of individual data points. This can help to prevent the compromise of individual data even if the source data itself is compromised.</p>
+<h4 id="homo-morphic-encryption">Homo-morphic Encryption:</h4>
+<p>Homo-morphic Encryption (HME) is a method that allows computations to be performed on encrypted data without descrypting it. The results, when decrypted, matches the result of operations as if these were performed on the original data. In federated learning, it allows computations to be performed on encrypted data without revealing the data to the involved parties.</p>
+<h4 id="secure-communication-protocols">Secure Communication Protocols:</h4>
+<p>Secure communication protocols ensure that data transmitted between parties is secure and cannot be intercepted or modified. In federated learning, secure communication protocols can be used to ensure that the model updates are transmitted securely between the involved parties (client, server, nodes).</p>
+<h4 id="robust-aggregation-algorithms">Robust Aggregation Algorithms:</h4>
+<p>Robust aggregation algorithms are methods used to combine the model updates from multiple clients in a way that is resistant to malicious updates. In federated learning, robust aggregation algorithms can help to ensure the integrity of the global model and resist backdoor attacks.</p>
+<h4 id="tee-trusted-execution-environment">TEE - Trusted Execution Environment:</h4>
+<p>A Trusted Execution Environment (TEE) is a secure area of a main processor where sensitive computations can be performed. In federated learning, a TEE can be used to ensure that the computations performed on the local data are secure and cannot be tampered with.</p>
+<h2 id="risks-in-the-context-of-mydigitwin-v6-supported-architecture">Risks in the context of MyDigiTwin v6-supported architecture</h2>
+<p>The core element of the research environment envisioned for MyDigiTwin is a privacy-preserving federated learning architecture, as described on <a href="../05.Building%20Block%20View/#level-2-building-blocks-research-environment">the building block's section</a>. The following ellaborates on the areas where the risks previously described pose potential threats or vulnerabilities.</p>
+<h3 id="risk-targets-vantage6-node">Risk targets - vantage6 node</h3>
+<p><img alt="Node" src="../images/vantage/Risk-L3-Components-node.drawio.png" /></p>
+<h3 id="risk-targets-vantage6-server">Risk targets - vantage6 server</h3>
+<p><img alt="Server" src="../images/vantage/Risk-L3-Components-server.drawio.png" /></p>
+<h3 id="mydigitwin-security-measures">MyDigiTwin Security measures</h3>
+<table>
+<thead>
+<tr>
+<th>Measure</th>
+<th>Accountable party</th>
+<th>Description</th>
+<th>References</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Federated learning, SMC</td>
+<td>vantage6 core</td>
+<td>Vantage6 allows the implementation of both Federated Learning or SMC algorithms. The selection of which approach to follow would depend on the agreements between the involved parties and the desired machine learning or data analysis application.</td>
+<td></td>
+</tr>
+<tr>
+<td>Differential privacy</td>
+<td>v6 node-infrastructure admin, algorithm developer</td>
+<td>DP-noise should be added to the data after it is harmonized before enabling access to it to any algorithm (to ensure data points cannot be exposed during local analysis). To prevent gradients leakage, on the other hand, the federated algorithm running on the node, should add DP-noise to the model updates to be sent to the server and to the aggregator. The v6 node-infrastructure admin is responsible for checking these practices within the algorithms before <a href="https://docs.vantage6.ai/en/main/node/configure.html">enabling them on the policies configuration file</a>.</td>
+<td></td>
+</tr>
+<tr>
+<td>Secure communication protocols</td>
+<td>v6-node admin, v6-server admin</td>
+<td>To prevent eavesdropping attacks, the first measures involve the server admin enabling the use of vantage6 REST API through HTTPS (See #3 in the diagrams). This ensures secure communication between the server and clients by encrypting the data transmitted over the network. Additionally, digital certificates should be used to authenticate the server's identity. Furthermore, to prevent a potential attacker within the vantage6 server (See #4) to get partial or aggregated results from the data sent between users(researchers) and nodes, all the nodes should enable v6's  <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a> <a href="https://docs.vantage6.ai/en/main/introduction/concepts.html?highlight=encryption#end-to-end-encryption">end-to-end encryption feature</a>.</td>
+<td></td>
+</tr>
+<tr>
+<td>HME</td>
+<td>node infrastrucrure admins, vantage6 node installer</td>
+<td>The end-to-end encryption features previously described would prevent an attacker to get partial results or aggregated data, even if they get access to the v6-server. However, in a federated learning algorithm the aggregator node would still get access to these unencrypted individual pieces of data. This makes this party prone, for example, to <strong>membership inference attacks</strong>. As homomorphic encryption allows computations to be performed on encrypted data without decrypting it, it could be used when the aggregator node <strong>is not a trusted party</strong>, or, in general, when inference attacks want to be prevented on the aggregator. <strong>Backdoor attacks</strong>, particularly the ones based on the injection of malicious model updates (through data or model poisoning -see #5), would also be mitigated with HME. This kind of attacks need very specific model updates to make the global model to behave in the way desired by the adversary, which wouldn't make it to the final model as these would be encrypted. To this end, the algorithms should be created in a way that each party encrypts its model updates using homomorphic encryption techniques.</td>
+<td></td>
+</tr>
+<tr>
+<td>Robust Aggregation Algorithms</td>
+<td>Algorithm developer</td>
+<td>When used as part of the federated learning strategy, non-robust aggregation algorithms would allow updates that significantly deviate from the real ones, introducing significant error on the global model, e.g., through model poisoning (see #2) or data poisoning (see #1). Algorithm developer should include a robust aggregation algorithm that mitigates poisoning attacks, for example, by considering only the most representative model updates (e.g., byzantine-robust aggregation methods).</td>
+<td>[4]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="references">References</h3>
+<p>[1] Mothukuri, Viraaji, et al. "A survey on security and privacy of federated learning." Future Generation Computer Systems 115 (2021): 619-640.</p>
+<p>[2] Li, Hao, et al. "Review on security of federated learning and its application in healthcare." Future Generation Computer Systems 144 (2023): 271-290.</p>
+<p>[3] Sikandar, Hira Shahzadi, et al. "A Detailed Survey on Federated Learning Attacks and Defenses." Electronics 12.2 (2023): 260.</p>
+<p>[4] Liu, P., Xu, X. &amp; Wang, W. Threats, attacks and defenses to federated learning: issues, taxonomy and perspectives. Cybersecurity 5, 4 (2022). https://doi.org/10.1186/s42400-021-00105-6</p>
+<p>[5] OWASP AI Security and Privacy Guide - https://owasp.org/www-project-ai-security-and-privacy-guide/</p>
+<p>[6] Data Protection Impact Assessment (DPIA) for vantage6</p>
+<!--## Technical debts
+
+In this section, we identify technical debts present in the MyDigiTwin project. Technical debt refers to areas in the project where compromises or shortcuts were made during development that may require future refactoring or improvement. It is essential to track and address technical debts to ensure the long-term maintainability and scalability of the system.
+
+### Debt 1: 
+
+**Description**: 
+
+**Impact**: 
+
+**Proposed Solution**: ->
+
+
+
+
+
+
+
+<!--| ID | Risk | Related to | Measures | References |
+|--|--|--|--|--|
+| R1 | Data misuse |  |SMC  |[1] |
+| R2 | Data injection/modification - poisoning | R7 |DP, HME  |[1] |
+| R3 | Model poisoning |R5  |Secure communication protocols, cryptographic techniques|[1] |
+| R4 | Model inversion |  |DP, HME  |[1] |
+| R5 | Membership inference |  |DP, HME, Regularisation, Training data reduction  |[1] |
+| R6 | Generative Adverserial Networks (GAN)|R5  |SMC,DP,TEE,HME |[1] |
+| R7 | Reconstruction |  |DP, Robust Aggregation Algorithms  |[1][3][4] |
+| R8 | Eavesdropping |  |Secure communication protocols, MFA, DP |[4] |
+| R9 | Backdoor attacks (malicious task injection) |  |DP, Norm Thresholds  |[3][4] |
+
+| R2 | Integrity attacks | |  | | |
+| R2 | Incorrect results | |  | | |
+| R1 | (A)vailability attacks | |  |[SMC](#secure-multi-party-computation)  |[1] |
+
+
+| R4 | **Free-riding attacks**| |  || |
+| R4.1 | Malicious participants| |  || |
+
+#### Regularisation: 
+Regularisation is a technique used in machine learning to prevent overfitting by adding a penalty term to the loss function. In federated learning, regularisation can be used to ensure that the model updates do not cause the global model to overfit to the local data.
+
+#### Training Data Reduction: 
+Training data reduction is a technique used to reduce the amount of data used for training. This can help to reduce the risk of backdoor attacks by limiting the amount of data that can be used to inject malicious updates. In federated learning, this can be achieved by using techniques such as data sampling or data compression.
+
+#### Norm Thresholds: 
+Norm thresholds are used to limit the magnitude of the updates sent from the client to the server in federated learning. By setting a threshold on the norm (or length) of the update vector, one can prevent the introduction of large updates that could potentially contain malicious data. This can help to prevent backdoor attacks by ensuring that the updates sent to the server are within an acceptable range.
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.c011b7c0.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.7389ff0e.min.js"></script>
+      
+    
+  </body>
+</html>
