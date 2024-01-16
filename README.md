@@ -6,21 +6,20 @@ This repository contains the architecture documentation for the MyDigiTwin proje
 
 ## Table of Contents
 
-1. [Introduction and Goals (draft)](docs/01.Introduction%20and%20Goals.md)
-2. [Architecture Constraints (to be done)](docs/02.Architecture%20Constraints.md)
-3. [Context and Scope (to be done)](docs/03.Context%20and%20scope.md)
-4. [Solution Strategy (to be done)](docs/04.Solution%20Strategy.md)
-5. [Building Block View (draft)](docs/05.Building%20Block%20View.md)
-6. [Runtime View (to be done)](docs/06.Runtime%20View.md)
-7. [Deployment View (to be done)](docs/07.Deployment%20View.md)
-8. [Cross-cutting Concepts (to be done)](docs/08.Crosscutting%20Concepts.md)
-9. [Architecture Decisions (to be done)](docs/09.Architecture%20Decisions.md)
-10. [Quality Requirements (to be done)](docs/10.Quality%20Requirements.md)
-11. [Risks and Technical Debt (draft)](docs/11.Risks%20and%20Technical%20Debt.md)
-12. [Glossary (draft)](docs/12.Glossary.md)
-13. [About arc42](docs/Aboutarc42.md)
-14. [Appendix](docs/Appendix.md)
-15. [Images](docs/images)
+1. [**Introduction and Goals**](docs/01.Introduction%20and%20Goals.md)
+2. [**WIP** - Architecture Constraints](docs/02.Architecture%20Constraints.md)
+3. [**WIP** Context and Scope](docs/03.Context%20and%20scope.md)
+4. [**WIP** Solution Strategy](docs/04.Solution%20Strategy.md)
+5. [**Building Block View**](docs/05.Building%20Block%20View.md)
+6. [**WIP** Runtime View](docs/06.Runtime%20View.md)
+7. [**WIP** Deployment View](docs/07.Deployment%20View.md)
+8. [**WIP** Cross-cutting Concepts](docs/08.Crosscutting%20Concepts.md)
+9. [**WIP** Architecture Decisions](docs/09.Architecture%20Decisions.md)
+10. [**WIP** Quality Requirements](docs/10.Quality%20Requirements.md)
+11. [**Risks and Technical Debt**](docs/11.Risks%20and%20Technical%20Debt.md)
+12. [**Glossary**](docs/12.Glossary.md)
+13. [**About arc42**](docs/Aboutarc42.md)
+
 
 
 ## Automated documentation building
