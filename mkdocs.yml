@@ -1,9 +1,15 @@
 site_name: MyDigiTwin architecture documentation 
 theme:
   name: material
-markdown_extensions:
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+  custom_dir: material
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+extra_css:
+  - stylesheets/custom.css  
+plugins:
+  - search
+  - with-pdf:
+      author: Héctor Cadavid
+      output_path: ./MDT-arc42-architecture-draft.pdf
