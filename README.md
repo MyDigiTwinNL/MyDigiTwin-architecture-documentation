@@ -6,7 +6,6 @@ This repository contains the (living) architecture documentation for the MyDigiT
 
 ## Table of Contents
 
-- [**Introduction and Goals**](docs/01.Introduction%20and%20Goals.md)
 - [**Building Block View**](docs/05.Building%20Block%20View.md)
 - [**Risks and Technical Debt**](docs/11.Risks%20and%20Technical%20Debt.md)
 - [**About arc42**](docs/Aboutarc42.md)
