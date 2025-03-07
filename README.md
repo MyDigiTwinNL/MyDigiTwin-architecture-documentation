@@ -2,10 +2,17 @@
 
 ## Overview
 
-This repository contains the architecture documentation for the MyDigiTwin project, based on arc42, a lightweight template for documenting software architectures. The documentation is written in Markdown format, with each section contained in its own file. The documentation can be built and viewed using MkDocs, a static site generator.
+This repository contains the (living) architecture documentation for the MyDigiTwin project, based on arc42, a lightweight template for documenting software architectures. The documentation is written in Markdown format, with each section contained in its own file. The documentation can be built and viewed using MkDocs, a static site generator.
 
 ## Table of Contents
 
+- [**Introduction and Goals**](docs/01.Introduction%20and%20Goals.md)
+- [**Building Block View**](docs/05.Building%20Block%20View.md)
+- [**Risks and Technical Debt**](docs/11.Risks%20and%20Technical%20Debt.md)
+- [**About arc42**](docs/Aboutarc42.md)
+
+
+<!--
 1. [**Introduction and Goals**](docs/01.Introduction%20and%20Goals.md)
 2. [**WIP** - Architecture Constraints](docs/02.Architecture%20Constraints.md)
 3. [**WIP** Context and Scope](docs/03.Context%20and%20scope.md)
@@ -19,6 +26,7 @@ This repository contains the architecture documentation for the MyDigiTwin proje
 11. [**Risks and Technical Debt**](docs/11.Risks%20and%20Technical%20Debt.md)
 12. [**Glossary**](docs/12.Glossary.md)
 13. [**About arc42**](docs/Aboutarc42.md)
+-->
 
 
 
